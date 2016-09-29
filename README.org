@@ -1,0 +1,1 @@
+This is just a simple docker image running nginx with a static html site.
