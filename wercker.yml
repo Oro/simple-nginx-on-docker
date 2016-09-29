@@ -1,0 +1,30 @@
+box: golang
+dev:
+  steps:
+    - setup-go-workspace:
+        package-dir: ./
+
+    - internal/watch:
+        code: |
+          go build -o app ./...
+          ./app
+        reload: true
+
+build:
+  steps:
+    - setup-go-workspace:
+        package-dir: ./
+
+    - golint
+
+    - script:
+        name: go build
+        code: |
+          go build -o app ./...
+
+    - script:
+        name: go test
+        code: |
+          go test ./...
+
+
