@@ -46,7 +46,6 @@ deploy-dockerhub:
 kube-deploy:
   steps:
     - kubectl:
-      cwd: deployment
       server: $KUBERNETES_MASTER
       username: $KUBERNETES_USERNAME
       password: $KUBERNETES_PASSWORD
