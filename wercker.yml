@@ -38,7 +38,7 @@ deploy:
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
-        tag: $WERCKER_GIT_COMMIT
+        tag: latest, $WERCKER_GIT_COMMIT, $WERCKER_GIT_BRANCH
         cmd: ./app
         ports: 8080
         repository: oronu/nginx-simple-html
