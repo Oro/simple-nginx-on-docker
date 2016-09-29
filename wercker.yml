@@ -30,7 +30,7 @@ build:
     - script:
         name: copy to output dir
         code: |
-          cp -r source/static app $WERCKER_OUTPUT_DIR
+          cp -r source/static kube.yml app $WERCKER_OUTPUT_DIR
 
 deploy-dockerhub:
   steps:
