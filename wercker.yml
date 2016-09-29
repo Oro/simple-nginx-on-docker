@@ -33,7 +33,7 @@ build:
         code: |
           cp app $WERCKER_OUTPUT_DIR
 
-deploy:
+deploy-dockerhub:
   steps:
     - internal/docker-push:
         username: $USERNAME
