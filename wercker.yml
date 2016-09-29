@@ -20,7 +20,6 @@ build:
     - script:
         name: go build
         code: |
-          cd $WERCKER_SOURCE_DIR
           CGO_ENABLED=0 go build -a -ldflags '-s' -installsuffix cgo -o app ./...
 
     - script:
@@ -31,7 +30,7 @@ build:
     - script:
         name: copy to output dir
         code: |
-          cp app $WERCKER_OUTPUT_DIR
+          cp -r source/static app $WERCKER_OUTPUT_DIR
 
 deploy-dockerhub:
   steps:
