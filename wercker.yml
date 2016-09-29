@@ -21,7 +21,7 @@ build:
         name: go build
         code: |
           cd $WERCKER_SOURCE_DIR
-          go build -o app ./...
+          CGO_ENABLED=0 go build -a -ldflags '-s' -installsuffix cgo -o app ./...
 
     - script:
         name: go test
@@ -35,7 +35,7 @@ build:
 
 deploy-dockerhub:
   steps:
-    - internal/docker-push:
+    - internal/docker-scratch-push:
         username: $USERNAME
         password: $PASSWORD
         tag: latest, $WERCKER_GIT_COMMIT, $WERCKER_GIT_BRANCH
