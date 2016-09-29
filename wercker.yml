@@ -20,6 +20,7 @@ build:
     - script:
         name: go build
         code: |
+          cd $WERCKER_SOURCE_DIR
           go build -o app ./...
 
     - script:
@@ -27,4 +28,18 @@ build:
         code: |
           go test ./...
 
+    - script:
+        name: copy to output dir
+        code: |
+          cp app $WERCKER_OUTPUT_DIR
 
+deploy:
+  steps:
+    - internal/docker-push:
+        username: $USERNAME
+        password: $PASSWORD
+        tag: $WERCKER_GIT_COMMIT
+        cmd: ./app
+        ports: 8080
+        repository: oronu/nginx-simple-html
+        registry: https://registry.hub.docker.com
