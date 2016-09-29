@@ -48,7 +48,7 @@ kube-deploy:
     - kubectl:
       cwd: deployment
       server: $KUBERNETES_MASTER
-      username: $KUBE_USERNAME
-      password: $KUBE_PASSWORD
+      username: $KUBERNETES_USERNAME
+      password: $KUBERNETES_PASSWORD
       insecure-skip-tls-verify: true
       command: apply -f kube.yml
