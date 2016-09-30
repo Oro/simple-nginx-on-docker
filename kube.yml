@@ -12,7 +12,6 @@ spec:
   selector:
     name: orohttp-${WERCKER_GIT_BRANCH}
     branch: ${WERCKER_GIT_BRANCH}
-    commit: ${WERCKER_GIT_COMMIT}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
