@@ -3,8 +3,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: orohttp-${WERCKER_GIT_BRANCH}
-  labels:
-    name: orohttp-${WERCKER_GIT_BRANCH}
 spec:
   ports:
     - port: 80
@@ -20,8 +18,6 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: orohttp-${WERCKER_GIT_BRANCH}
-  labels:
-    name: orohttp-${WERCKER_GIT_BRANCH}
 spec:
   replicas: 2
   template:
@@ -33,7 +29,7 @@ spec:
     spec:
       containers:
       - name: orohttp-${WERCKER_GIT_BRANCH}
-        image: oronu/nginx-simple-html:master:${WERCKER_GIT_COMMIT}
+        image: oronu/nginx-simple-html:${WERCKER_GIT_COMMIT}
         ports:
         - name: http-server
           containerPort: 8080
