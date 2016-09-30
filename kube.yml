@@ -12,7 +12,6 @@ spec:
   selector:
     name: orohttp-${WERCKER_GIT_BRANCH}
     branch: ${WERCKER_GIT_BRANCH}
-    commit: ${WERCKER_GIT_COMMIT}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -25,7 +24,6 @@ spec:
       labels:
         name: orohttp-${WERCKER_GIT_BRANCH}
         branch: ${WERCKER_GIT_BRANCH}
-        commit: ${WERCKER_GIT_COMMIT}
     spec:
       containers:
       - name: orohttp-${WERCKER_GIT_BRANCH}
@@ -34,3 +32,9 @@ spec:
         - name: http-server
           containerPort: 8080
           protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http-server
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
