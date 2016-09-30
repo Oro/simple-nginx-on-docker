@@ -45,9 +45,16 @@ deploy-dockerhub:
 
 kube-deploy:
   steps:
+    - script:
+      name: generate kube file
+      code: |
+        eval "cat <<EOF
+        $(cat "$WERCKER_SOURCE_DIR/kube.yml")
+        EOF" > kube-gen.yml
+        cat kube-gen.yml
     - kubectl:
       server: $KUBERNETES_MASTER
       username: $KUBERNETES_USERNAME
       password: $KUBERNETES_PASSWORD
       insecure-skip-tls-verify: true
-      command: apply -f $WERCKER_SOURCE_DIR/kube.yml
+      command: apply -f kube-gen.yml

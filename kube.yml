@@ -2,9 +2,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: orohttp
+  name: orohttp-${WERCKER_GIT_BRANCH}
   labels:
-    name: orohttp
+    name: orohttp-${WERCKER_GIT_BRANCH}
 spec:
   ports:
     - port: 80
@@ -12,27 +12,27 @@ spec:
       protocol: TCP
   type: LoadBalancer
   selector:
-    name: orohttp
+    name: orohttp-${WERCKER_GIT_BRANCH}
     branch: ${WERCKER_GIT_BRANCH}
     commit: ${WERCKER_GIT_COMMIT}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: orohttp
+  name: orohttp-${WERCKER_GIT_BRANCH}
   labels:
-    name: orohttp
+    name: orohttp-${WERCKER_GIT_BRANCH}
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        name: orohttp
+        name: orohttp-${WERCKER_GIT_BRANCH}
         branch: ${WERCKER_GIT_BRANCH}
         commit: ${WERCKER_GIT_COMMIT}
     spec:
       containers:
-      - name: orohttp
+      - name: orohttp-${WERCKER_GIT_BRANCH}
         image: oronu/nginx-simple-html:master:${WERCKER_GIT_COMMIT}
         ports:
         - name: http-server
