@@ -24,7 +24,6 @@ spec:
       labels:
         name: orohttp-${WERCKER_GIT_BRANCH}
         branch: ${WERCKER_GIT_BRANCH}
-        commit: ${WERCKER_GIT_COMMIT}
     spec:
       containers:
       - name: orohttp-${WERCKER_GIT_BRANCH}
